@@ -1,0 +1,69 @@
+POTHOLE DETECTION RESULTS
+
+1. DATASET AUDIT — BEFORE EXCLUDING THE INVALID IMAGE
+
+Split        Images    Valid boxes
+Train        465       1256
+Validation   133       330
+Test         67        153
+
+Invalid bounding boxes: 1
+File: test/img-415_jpg.rf.2285ec32b9bdc584221e193dc135e3fd.txt
+Line: 3
+
+Decision: exclude this image and its matching label file.
+Final counts after exclusion: not yet provided.
+
+Cross-split possible near-duplicate pairs: 44
+Exact file duplicates reported across splits: 0
+Visual review decisions: not yet provided.
+The 44 candidates are not confirmed duplicates.
+
+
+2. TRAINING CONFIGURATION
+
+Framework: Ultralytics 8.3.228
+Python: 3.13.16
+PyTorch: 2.14.1+cu130
+GPU: NVIDIA Tesla T4
+Model: YOLOv8n
+Initial pretrained weights: yolov8n.pt
+
+Notebook training settings:
+Epochs: 30
+Batch size: 8
+Optimizer: SGD
+Initial learning rate: 0.01
+Random seed: 42
+
+Controlled change: training image size, from 416 to 640.
+Hypothesis: larger images may help detect small potholes,
+but training may take longer.
+
+
+3. VALIDATION COMPARISON
+
+Run          Training size  Precision  Recall  mAP@0.50  Minutes
+Baseline     416            0.7841     0.6182  0.7347    4.47
+Experiment   640            0.8599     0.6667  0.7784    5.63
+
+Shared validation settings:
+Image size: 640
+Confidence floor: 0.001
+NMS IoU threshold: 0.70
+
+The experiment improved mAP@0.50 by 0.0437,
+equivalent to 4.37 percentage points.
+Precision and recall also improved.
+Training required 1.16 additional minutes.
+
+The 640 experiment is preferred based on validation results.
+These results remain preliminary until duplicate review is resolved.
+
+
+4. FINAL TEST EVALUATION
+
+Test metrics, prediction examples and failure analysis:
+not yet provided.
+
+Validation results above are not final test results.
